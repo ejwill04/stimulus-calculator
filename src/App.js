@@ -132,7 +132,12 @@ const AGISelector = ({ agi, setAgi }) => {
   const classes = useStyles();
 
   return (
-    <form className={classes.toggleContainer} noValidate autoComplete="off" onSubmit={e => e.preventDefault()}>
+    <form className={classes.toggleContainer} noValidate autoComplete="off" 
+      onSubmit={e => {
+        e.preventDefault()
+        return false;
+      }}
+      >
       <TextField 
       value={agi}
       onChange={e => setAgi(e.target.value)}
