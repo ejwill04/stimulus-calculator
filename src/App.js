@@ -132,7 +132,7 @@ const AGISelector = ({ agi, setAgi }) => {
   const classes = useStyles();
 
   return (
-    <form className={classes.toggleContainer} noValidate autoComplete="off">
+    <form className={classes.toggleContainer} noValidate autoComplete="off" onSubmit={e => e.preventDefault()}>
       <TextField 
       value={agi}
       onChange={e => setAgi(e.target.value)}
@@ -200,7 +200,7 @@ export default function App() {
             </Typography>
             <Typography align="center">
               <Link
-                href="https://www.congress.gov/bill/116th-congress/senate-bill/3548"
+                href="https://www.congress.gov/bill/116th-congress/senate-bill/3548 "
                 target="_blank"
               >CARES Act
               </Link>
