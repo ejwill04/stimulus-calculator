@@ -26,7 +26,7 @@ function Copyright() {
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(8),
+    marginTop: theme.spacing(4),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
   },
   toggleContainer: {
     margin: theme.spacing(2, 0),
-    marginBottom: 40,
+    marginBottom: 30,
   },
 }));
 
@@ -81,6 +81,7 @@ const StatusSelector = ({ classes, status, setStatus }) => {
   return (
     <Grid>
       <div className={classes.toggleContainer}>
+        <Typography component="legend" align="center">2019 Filing Status</Typography>
         <ToggleButtonGroup
           value={status}
           exclusive
@@ -131,7 +132,7 @@ const AGISelector = ({ agi, setAgi }) => {
   const classes = useStyles();
 
   return (
-    <form className={classes.root} noValidate autoComplete="off">
+    <form className={classes.toggleContainer} noValidate autoComplete="off">
       <TextField 
       value={agi}
       onChange={e => setAgi(e.target.value)}
@@ -196,6 +197,13 @@ export default function App() {
             </Typography>
             <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
               Helpful Links:
+            </Typography>
+            <Typography align="center">
+              <Link
+                href="https://www.congress.gov/bill/116th-congress/senate-bill/3548"
+                target="_blank"
+              >CARES Act
+              </Link>
             </Typography>
             <Typography align="center">
               <Link 
