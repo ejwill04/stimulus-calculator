@@ -18,10 +18,7 @@ function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        A Monday Night,
-      </Link>{' '}
-      {new Date().getFullYear()}
+        A Monday Night, {new Date().getFullYear()}
       {'.'}
     </Typography>
   );
@@ -170,7 +167,7 @@ export default function App() {
   let amount = 0
   if (agi > PHASEOUT_START[status]) {
     // $5 reduction for every $1000 over
-    amount = Math.max(PROVISIONS[status] + (children * PROVISIONS.children) - (((agi - PROVISIONS[status])/ 100) * 5), 0)
+    amount = Math.max(PROVISIONS[status] + (children * PROVISIONS.children) - (((+agi - PHASEOUT_START[status])/ 100) * 5), 0)
   } else {
     amount = PROVISIONS[status] + (children * PROVISIONS.children)
   }
@@ -189,9 +186,9 @@ export default function App() {
               How much will I get from the U.S. government?
             </Typography>
             <div className={classes.paper}>
-              <StatusSelector classes={classes} status={status} setStatus={setStatus} />
-              <ChildSelector children={children} setChildren={setChildren} />
-              <AGISelector agi={agi} setAgi={setAgi} />
+                <StatusSelector classes={classes} status={status} setStatus={setStatus} />
+                <ChildSelector children={children} setChildren={setChildren} />
+                <AGISelector agi={agi} setAgi={setAgi} />
             </div>
             <Typography variant="h3" align="center" paragraph color="textPrimary" gutterBottom>
               Amount {`$`}{amount}
