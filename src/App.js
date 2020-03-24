@@ -47,6 +47,7 @@ const useStyles = makeStyles((theme) => ({
   },
   toggleContainer: {
     margin: theme.spacing(2, 0),
+    marginBottom: 40,
   },
 }));
 
@@ -110,8 +111,8 @@ const ChildSelector = ({ children, setChildren }) => {
 
   return (
     <div>
-      <Box component="fieldset" mb={children} borderColor="transparent">
-        <Typography component="legend">Number of Children</Typography>
+      <Box component="fieldset" mb={3} borderColor="transparent">
+        <Typography component="legend" align="center">Number of Children</Typography>
         <Rating
           name="customized-icons"
           defaultValue={children}
@@ -178,8 +179,8 @@ export default function App() {
       <TopBar />
       <main>
         <div className={classes.heroContent}>
-          <Container maxWidth="md">
-            <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
+          <Container maxWidth="lg">
+            <Typography component="h2" variant="h2" align="center" color="textPrimary" gutterBottom>
               Coronavirus Check Calculator
             </Typography>
             <Typography variant="h5" align="center" color="textSecondary" paragraph>
