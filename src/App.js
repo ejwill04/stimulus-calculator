@@ -13,6 +13,7 @@ import ToggleButton from '@material-ui/lab/ToggleButton';
 import ToggleButtonGroup from '@material-ui/lab/ToggleButtonGroup';
 import ChildCareIcon from '@material-ui/icons/ChildCare';
 import TextField from '@material-ui/core/TextField';
+import FormControl from '@material-ui/core/FormControl';
 
 function Copyright() {
   return (
@@ -132,12 +133,8 @@ const AGISelector = ({ agi, setAgi }) => {
   const classes = useStyles();
 
   return (
-    <form className={classes.toggleContainer} noValidate autoComplete="off" 
-      onSubmit={e => {
-        e.preventDefault()
-        return true;
-      }}
-      >
+    <FormControl
+      className={classes.toggleContainer} noValidate autoComplete="off">
       <TextField 
       value={agi}
       onChange={e => setAgi(e.target.value)}
@@ -145,7 +142,7 @@ const AGISelector = ({ agi, setAgi }) => {
       type="number"
       helperText="Adjusted Gross Income"
       label="$" />
-    </form>
+    </FormControl>
   );
 }
 
