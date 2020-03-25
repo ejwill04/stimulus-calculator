@@ -27,7 +27,6 @@ function Copyright() {
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(4),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -37,10 +36,15 @@ const useStyles = makeStyles((theme) => ({
   },
   heroContent: {
     backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(8, 0, 6),
+    padding: theme.spacing(2, 0, 4),
   },
   heroButtons: {
     marginTop: theme.spacing(4),
+  },
+  header: {
+    color: 'white',
+    backgroundColor: '#e3d6d7',
+    padding: theme.spacing(2),
   },
   footer: {
     backgroundColor: theme.palette.background.paper,
@@ -82,7 +86,7 @@ const StatusSelector = ({ classes, status, setStatus }) => {
   return (
     <Grid>
       <div className={classes.toggleContainer}>
-        <Typography component="legend" align="center">2019 Filing Status</Typography>
+        <Typography component="legend" align="center">Filing Status</Typography>
         <ToggleButtonGroup
           value={status}
           exclusive
@@ -114,7 +118,7 @@ const ChildSelector = ({ children, setChildren }) => {
   return (
     <div>
       <Box component="fieldset" mb={3} borderColor="transparent">
-        <Typography component="legend" align="center">Number of Children</Typography>
+        <Typography component="legend" align="center">Children under Age 17</Typography>
         <Rating
           name="customized-icons"
           defaultValue={children}
@@ -135,15 +139,26 @@ const AGISelector = ({ agi, setAgi }) => {
   return (
     <FormControl
       className={classes.toggleContainer} noValidate autoComplete="off">
+      <Typography component="legend" align="center">Adjusted Gross Income (AGI)</Typography>
       <TextField 
       value={agi}
       onChange={e => setAgi(e.target.value)}
       id="standard-basic" 
       type="number"
-      helperText="Adjusted Gross Income"
-      label="$" />
+      helperText={
+        <Link
+          href="https://www.nerdwallet.com/blog/taxes/adjusted-gross-income-agi/"
+          target="_blank"
+          >Explanation of adjusted gross income
+        </Link>
+      }
+      />
     </FormControl>
   );
+}
+
+const numberWithCommas = x => {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
 const PHASEOUT_START = {
@@ -179,23 +194,28 @@ export default function App() {
   return (
     <React.Fragment>
       <CssBaseline />
-      <TopBar />
+      {/* <TopBar /> */}
       <main>
-        <div className={classes.heroContent}>
-          <Container maxWidth="lg">
-            <Typography component="h2" variant="h2" align="center" color="textPrimary" gutterBottom>
+            <div className={classes.header}>
+            <Typography component="h1" variant="h3" align="center" color="textPrimary" gutterBottom>
               Coronavirus Check Calculator
             </Typography>
-            <Typography variant="h5" align="center" color="textSecondary" paragraph>
+            <Typography component="h2" variant="h6" align="center" color="textSecondary" paragraph>
               How much will I get from the U.S. government?
             </Typography>
+            <Typography variant="h6" align="center" color="textSecondary" paragraph>
+              Based off 2019 federal tax returns if filed, else based on 2018 filing.
+            </Typography>
+            </div>
+        <div className={classes.heroContent}>
+          <Container maxWidth="lg">
             <div className={classes.paper}>
                 <StatusSelector classes={classes} status={status} setStatus={setStatus} />
                 <ChildSelector children={children} setChildren={setChildren} />
                 <AGISelector agi={agi} setAgi={setAgi} />
             </div>
             <Typography variant="h3" align="center" paragraph color="textPrimary" gutterBottom>
-              Amount {`$`}{amount}
+              Amount {`$`}{numberWithCommas(amount)}
             </Typography>
             <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
               Helpful Links:
@@ -215,11 +235,7 @@ export default function App() {
               </Link>
             </Typography>
             <Typography align="center">
-              <Link
-                href="https://www.nerdwallet.com/blog/taxes/adjusted-gross-income-agi/"
-                target="_blank"
-              >What is adjusted gross income?
-              </Link>
+              
             </Typography>
           </Container>
         </div>
